@@ -1,0 +1,12 @@
+[finance]
+finance_1 ansible_host=127.0.0.1 ansible_port=22 ansible_user=centos
+
+[finance:vars]
+DEPLOYMENT_ROOT=/root
+
+POSTGRES_TAG=9.6.5-alpine
+CASSANDRA_TAG=3.11.0
+KAFKA_TAG=3.3.0
+
+POSTGRES_PASSWORD=test
+HOST_IP=127.0.0.1

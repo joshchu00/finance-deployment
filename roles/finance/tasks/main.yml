@@ -1,0 +1,38 @@
+---
+- name: create deployment directory
+  file:
+    path: "{{ DEPLOYMENT_ROOT }}/finance"
+    state: directory
+    mode: 0755
+
+- name: copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: "{{ DEPLOYMENT_ROOT }}/finance/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: generate .env
+  blockinfile:
+    path: "{{ DEPLOYMENT_ROOT }}/finance/.env"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+    block: |
+      POSTGRES_TAG={{ POSTGRES_TAG }}
+      CASSANDRA_TAG={{ CASSANDRA_TAG }}
+      KAFKA_TAG={{ KAFKA_TAG }}
+
+      POSTGRES_PASSWORD={{ POSTGRES_PASSWORD }}
+      HOST_IP={{ HOST_IP }}
+
+- name: start docker
+  #docker_service:
+  #  project_src: "{{ DEPLOYMENT_ROOT }}/finance"
+  #  state: present
+  command: docker-compose up -d
+  args:
+    chdir: "{{ DEPLOYMENT_ROOT }}/finance"
+

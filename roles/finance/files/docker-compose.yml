@@ -34,6 +34,7 @@ services:
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=${HOST_IP}:32181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:39092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     restart: always
 volumes:
   postgres:
