@@ -21,6 +21,8 @@
     group: root
     mode: 0644
     block: |
+      DEPLOYMENT_ROOT={{ DEPLOYMENT_ROOT }}
+
       POSTGRES_TAG={{ POSTGRES_TAG }}
       CASSANDRA_TAG={{ CASSANDRA_TAG }}
       KAFKA_TAG={{ KAFKA_TAG }}
