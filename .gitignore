@@ -31,3 +31,6 @@ generated/
 
 # Mac
 .DS_Store
+
+# Ansible
+*.inv
