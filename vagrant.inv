@@ -1,5 +1,5 @@
 [finance]
-finance_1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/Users/joshchu999/Programs/vagrant/test/.vagrant/machines/default/virtualbox/private_key
+finance-1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/Users/joshchu999/Programs/vagrant/test/.vagrant/machines/default/virtualbox/private_key
 
 [finance:vars]
 DEPLOYMENT_ROOT=/root
