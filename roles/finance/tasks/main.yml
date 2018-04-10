@@ -1,21 +1,21 @@
 ---
 - name: create deployment directory
   file:
-    path: "{{ DEPLOYMENT_ROOT }}/finance"
+    path: '{{ DEPLOYMENT_ROOT }}/finance'
     state: directory
     mode: 0755
 
 - name: copy docker-compose.yml
   copy:
     src: docker-compose.yml
-    dest: "{{ DEPLOYMENT_ROOT }}/finance/docker-compose.yml"
+    dest: '{{ DEPLOYMENT_ROOT }}/finance/docker-compose.yml'
     owner: root
     group: root
     mode: 0644
 
 - name: generate .env
   blockinfile:
-    path: "{{ DEPLOYMENT_ROOT }}/finance/.env"
+    path: '{{ DEPLOYMENT_ROOT }}/finance/.env'
     create: yes
     owner: root
     group: root
@@ -32,9 +32,9 @@
 
 - name: start docker
   #docker_service:
-  #  project_src: "{{ DEPLOYMENT_ROOT }}/finance"
+  #  project_src: '{{ DEPLOYMENT_ROOT }}/finance'
   #  state: present
   command: /usr/local/bin/docker-compose up -d
   args:
-    chdir: "{{ DEPLOYMENT_ROOT }}/finance"
+    chdir: '{{ DEPLOYMENT_ROOT }}/finance'
 
