@@ -1,36 +1,36 @@
 version: "2"
 services:
   postgres:
-    image: postgres:${POSTGRES_TAG}
+    image: ${POSTGRES_IMAGE}
     ports:
       - 35432:5432
     volumes:
-      - "postgres:/var/lib/postgresql/data"
+      - "postgres:/var/lib/postgresql/data:z"
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     restart: always
   cassandra:
-    image: cassandra:${CASSANDRA_TAG}
+    image: ${CASSANDRA_IMAGE}
     ports:
       - 39042:9042
     volumes:
-      - "cassandra:/var/lib/cassandra"
+      - "cassandra:/var/lib/cassandra:z"
     restart: always
   zookeeper:
-    image: confluentinc/cp-zookeeper:${KAFKA_TAG}
+    image: ${ZOOKEEPER_IMAGE}
     network_mode: "host"
     volumes:
-      - "zookeeper:/var/lib/zookeeper/data"
+      - "zookeeper:/var/lib/zookeeper/data:z"
     environment:
       - ZOOKEEPER_CLIENT_PORT=32181
     restart: always
   kafka:
-    image: confluentinc/cp-kafka:${KAFKA_TAG}
+    image: ${KAFKA_IMAGE}
     network_mode: "host"
     depends_on:
       - zookeeper
     volumes:
-      - "kafka:/var/lib/kafka/data"
+      - "kafka:/var/lib/kafka/data:z"
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=${HOST_IP}:32181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:39092
