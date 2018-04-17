@@ -1,0 +1,17 @@
+---
+# This playbook deploys the whole application stack in this site.
+# - name: apply common configuration to all nodes
+#   hosts: all
+#   remote_user: root
+#
+#   roles:
+#     - common
+
+- hosts: finance-scala-earth
+  # serial: 1
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - common
+    - finance-scala-earth
