@@ -27,6 +27,7 @@
       CASSANDRA_IMAGE={{ CASSANDRA_IMAGE }}
       ZOOKEEPER_IMAGE={{ ZOOKEEPER_IMAGE }}
       KAFKA_IMAGE={{ KAFKA_IMAGE }}
+      SCHEMA_REGISTRY_IMAGE={{ SCHEMA_REGISTRY_IMAGE }}
 
       POSTGRES_PASSWORD={{ POSTGRES_PASSWORD }}
       HOST_IP={{ HOST_IP }}
@@ -35,4 +36,3 @@
   command: /usr/local/bin/docker-compose up -d
   args:
     chdir: '{{ DEPLOYMENT_ROOT }}'
-

@@ -36,9 +36,18 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:39092
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     restart: always
+  schema-registry:
+    image: ${SCHEMA_REGISTRY_IMAGE}
+    network_mode: "host"
+    depends_on:
+      - zookeeper
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=${HOST_IP}:32181
+      - SCHEMA_REGISTRY_HOST_NAME=${HOST_IP}
+      - SCHEMA_REGISTRY_LISTENERS=http://${HOST_IP}:38081
+    restart: always
 volumes:
   postgres:
   cassandra:
   zookeeper:
   kafka:
-
