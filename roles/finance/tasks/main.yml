@@ -1,0 +1,66 @@
+---
+- name: create deployment directory
+  file:
+    path: '{{ DEPLOYMENT_ROOT }}'
+    state: directory
+    mode: 0755
+
+- name: copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: '{{ DEPLOYMENT_ROOT }}/docker-compose.yml'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: generate .env
+  blockinfile:
+    path: '{{ DEPLOYMENT_ROOT }}/.env'
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+    block: |
+      DEPLOYMENT_ROOT={{ DEPLOYMENT_ROOT }}
+
+      FINANCE_GO_CRAWLER_IMAGE={{ FINANCE_GO_CRAWLER_IMAGE }}
+      FINANCE_GO_PROCESSOR_IMAGE={{ FINANCE_GO_PROCESSOR_IMAGE }}
+      FINANCE_GO_ANALYZER_IMAGE={{ FINANCE_GO_ANALYZER_IMAGE }}
+
+      ENVIRONMENT={{ ENVIRONMENT }}
+      DIRECTORY_BASE={{ DIRECTORY_BASE }}
+      DIRECTORY_CONFIG={{ DIRECTORY_CONFIG }}
+      DIRECTORY_LOG={{ DIRECTORY_LOG }}
+      DIRECTORY_DATA={{ DIRECTORY_DATA }}
+      CASSANDRA_HOSTS={{ CASSANDRA_HOSTS }}
+      CASSANDRA_KEYSPACE={{ CASSANDRA_KEYSPACE }}
+      KAFKA_BOOTSTRAP_SERVERS={{ KAFKA_BOOTSTRAP_SERVERS }}
+      CRAWLER_MODE={{ CRAWLER_MODE }}
+      CRAWLER_DAEMON_CRON={{ CRAWLER_DAEMON_CRON }}
+
+      TWSE_DATA={{ TWSE_DATA }}
+
+- name: create finance directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    mode: 0777
+  with_items:
+    - '{{ DIRECTORY_BASE }}'
+    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_CONFIG }}'
+    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_LOG }}'
+    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_DATA }}'
+    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_DATA }}{{ TWSE_DATA }}'
+
+- name: copy config.yaml
+  copy:
+    src: config.yaml
+    dest: '{{ DIRECTORY_BASE }}{{ DIRECTORY_CONFIG }}/config.yaml'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: start docker
+  command: /usr/local/bin/docker-compose up -d
+  args:
+    chdir: '{{ DEPLOYMENT_ROOT }}'

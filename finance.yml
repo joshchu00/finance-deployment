@@ -7,11 +7,11 @@
 #   roles:
 #     - common
 
-- hosts: finance-scala-earth
+- hosts: finance
   # serial: 1
   become: true
   become_user: root
   become_method: sudo
   roles:
     - common
-    - finance-scala-earth
+    - finance

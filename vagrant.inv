@@ -1,20 +1,29 @@
 [common:children]
-finance-scala-earth
+finance
 
 [common:vars]
 REGISTRIES='["127.0.0.1:5000"]'
 DOCKER_COMPOSE_URL=https://github.com/docker/compose/releases/download/1.22.0/docker-compose-Linux-x86_64
 
-[finance-scala-earth]
-finance-scala-earth-1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/Users/joshchu/Programs/vagrant/test/.vagrant/machines/default/virtualbox/private_key
+[finance]
+finance-1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=/Users/joshchu/Programs/vagrant/test/.vagrant/machines/default/virtualbox/private_key
 
-[finance-scala-earth:vars]
-DEPLOYMENT_ROOT=/root/finance-scala-earth
+[finance:vars]
+DEPLOYMENT_ROOT=/root/finance
 
-FINANCE_SCALA_EARTH_IMAGE=127.0.0.1:5000/finance-scala-earth:latest
+FINANCE_GO_CRAWLER_IMAGE=127.0.0.1:5000/finance-go-crawler:latest
+FINANCE_GO_PROCESSOR_IMAGE=127.0.0.1:5000/finance-go-processor:latest
+FINANCE_GO_ANALYZER_IMAGE=127.0.0.1:5000/finance-go-analyzer:latest
 
-APPLICATION_SECRET=onlyfordev
-ENVIRONMENT=dev
+ENVIRONMENT=prod
+DIRECTORY_BASE=/var/lib/finance
+DIRECTORY_CONFIG=/config
+DIRECTORY_LOG=/log
+DIRECTORY_DATA=/data
+CASSANDRA_HOSTS=127.0.0.1:9042
+CASSANDRA_KEYSPACE=finance
 KAFKA_BOOTSTRAP_SERVERS=127.0.0.1:9092
-KAFKA_TOPICS_PROCESSOR=processor-dev
-DATA_BASE_DIRECTORY=/var/lib/finance/scala/earth/data
+CRAWLER_MODE=daemon
+CRAWLER_DAEMON_CRON='0 5 15-19 * * *'
+
+TWSE_DATA=/twse
