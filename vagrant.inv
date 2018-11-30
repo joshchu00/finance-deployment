@@ -2,7 +2,6 @@
 finance
 
 [common:vars]
-REGISTRIES='["127.0.0.1:5000"]'
 DOCKER_COMPOSE_URL=https://github.com/docker/compose/releases/download/1.22.0/docker-compose-Linux-x86_64
 
 [finance]
@@ -11,9 +10,9 @@ finance-1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_
 [finance:vars]
 DEPLOYMENT_ROOT=/root/finance
 
-FINANCE_GO_CRAWLER_IMAGE=127.0.0.1:5000/finance-go-crawler:latest
-FINANCE_GO_PROCESSOR_IMAGE=127.0.0.1:5000/finance-go-processor:latest
-FINANCE_GO_ANALYZER_IMAGE=127.0.0.1:5000/finance-go-analyzer:latest
+FINANCE_GO_CRAWLER_IMAGE=joshchu00/finance-go-crawler:latest
+FINANCE_GO_PROCESSOR_IMAGE=joshchu00/finance-go-processor:latest
+FINANCE_GO_ANALYZER_IMAGE=joshchu00/finance-go-analyzer:latest
 
 ENVIRONMENT=prod
 DIRECTORY_BASE=/var/lib/finance
