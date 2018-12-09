@@ -36,9 +36,9 @@
       CASSANDRA_KEYSPACE={{ CASSANDRA_KEYSPACE }}
       KAFKA_BOOTSTRAP_SERVERS={{ KAFKA_BOOTSTRAP_SERVERS }}
       CRAWLER_MODE={{ CRAWLER_MODE }}
-      CRAWLER_DAEMON_CRON={{ CRAWLER_DAEMON_CRON }}
 
       TWSE_DATA={{ TWSE_DATA }}
+      TWSE_CRON={{ TWSE_CRON }}
 
 - name: create finance directories
   file:
@@ -59,6 +59,11 @@
     owner: root
     group: root
     mode: 0644
+
+- name: pull docker images
+  command: /usr/local/bin/docker-compose pull
+  args:
+    chdir: '{{ DEPLOYMENT_ROOT }}'
 
 - name: start docker
   command: /usr/local/bin/docker-compose up -d
