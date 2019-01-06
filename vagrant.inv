@@ -13,6 +13,8 @@ DEPLOYMENT_ROOT=/root/finance
 FINANCE_GO_CRAWLER_IMAGE=joshchu00/finance-go-crawler:latest
 FINANCE_GO_PROCESSOR_IMAGE=joshchu00/finance-go-processor:latest
 FINANCE_GO_ANALYZER_IMAGE=joshchu00/finance-go-analyzer:latest
+FINANCE_GO_SHIELDER_IMAGE=joshchu00/finance-go-shielder:latest
+FINANCE_GO_PORTER_IMAGE=joshchu00/finance-go-porter:latest
 
 ENVIRONMENT=prod
 DIRECTORY_BASE=/var/lib/finance
@@ -26,3 +28,5 @@ CRAWLER_MODE=daemon
 
 TWSE_DATA=/twse
 TWSE_CRON='0 5 7-12 * * *'
+
+PORTER_V1_HOST=127.0.0.1

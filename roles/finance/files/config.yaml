@@ -41,6 +41,11 @@ twse:
   # cron: use UTC
   cron: "0 5 7-12 * * *"
 
+shielder:
+  host: "192.168.33.10"
+  port: "50080"
+
 porter:
   v1:
-    address: ":50051"
+    host: "192.168.33.10"
+    port: "50011"
