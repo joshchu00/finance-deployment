@@ -42,7 +42,11 @@
       TWSE_DATA={{ TWSE_DATA }}
       TWSE_CRON={{ TWSE_CRON }}
 
+      SHIELDER_HOST={{ SHIELDER_HOST }}
+      SHIELDER_PORT={{ SHIELDER_PORT }}
+
       PORTER_V1_HOST={{ PORTER_V1_HOST }}
+      PORTER_V1_PORT={{ PORTER_V1_PORT }}
 
 - name: create finance directories
   file:

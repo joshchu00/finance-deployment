@@ -50,7 +50,7 @@ services:
   finance-go-shielder:
     image: ${FINANCE_GO_SHIELDER_IMAGE}
     ports:
-      - 50080:50080
+      - ${SHIELDER_PORT}:${SHIELDER_PORT}
     volumes:
       - "${DIRECTORY_BASE}${DIRECTORY_CONFIG}:${DIRECTORY_BASE}${DIRECTORY_CONFIG}:ro,z"
       - "${DIRECTORY_BASE}${DIRECTORY_LOG}:${DIRECTORY_BASE}${DIRECTORY_LOG}:z"
@@ -64,7 +64,7 @@ services:
   finance-go-porter:
     image: ${FINANCE_GO_PORTER_IMAGE}
     ports:
-      - 50011:50011
+      - ${PORTER_V1_PORT}:${PORTER_V1_PORT}
     volumes:
       - "${DIRECTORY_BASE}${DIRECTORY_CONFIG}:${DIRECTORY_BASE}${DIRECTORY_CONFIG}:ro,z"
       - "${DIRECTORY_BASE}${DIRECTORY_LOG}:${DIRECTORY_BASE}${DIRECTORY_LOG}:z"
