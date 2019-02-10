@@ -32,7 +32,6 @@
 
       ENVIRONMENT={{ ENVIRONMENT }}
       DIRECTORY_BASE={{ DIRECTORY_BASE }}
-      DIRECTORY_CONFIG={{ DIRECTORY_CONFIG }}
       DIRECTORY_LOG={{ DIRECTORY_LOG }}
       DIRECTORY_DATA={{ DIRECTORY_DATA }}
       CASSANDRA_HOSTS={{ CASSANDRA_HOSTS }}
@@ -64,18 +63,9 @@
     mode: 0777
   with_items:
     - '{{ DIRECTORY_BASE }}'
-    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_CONFIG }}'
     - '{{ DIRECTORY_BASE }}{{ DIRECTORY_LOG }}'
     - '{{ DIRECTORY_BASE }}{{ DIRECTORY_DATA }}'
     - '{{ DIRECTORY_BASE }}{{ DIRECTORY_DATA }}{{ TWSE_DATA }}'
-
-- name: copy config.yaml
-  copy:
-    src: config.yaml
-    dest: '{{ DIRECTORY_BASE }}{{ DIRECTORY_CONFIG }}/config.yaml'
-    owner: root
-    group: root
-    mode: 0644
 
 - name: pull docker images
   command: /usr/local/bin/docker-compose pull
