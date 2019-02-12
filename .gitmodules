@@ -1,3 +1,0 @@
-[submodule "roles/common"]
-	path = roles/common
-	url = git@joshchu00.github.com:joshchu00/deployment-role-common.git

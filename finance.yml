@@ -13,5 +13,4 @@
   become_user: root
   become_method: sudo
   roles:
-    - common
     - finance
