@@ -1,6 +1,6 @@
 @Library("library") _
 
-deploy {
+jDeploy {
   [
     gitURL = 'https://github.com/joshchu00/finance-deployment.git',
     gitBranch = 'master',
