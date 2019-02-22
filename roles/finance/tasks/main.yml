@@ -1,60 +1,52 @@
 ---
 - name: create deployment directory
   file:
-    path: '{{ DEPLOYMENT_ROOT }}'
+    path: '{{ deployment_root }}'
     state: directory
     mode: 0755
 
 - name: copy docker-compose.yml
   copy:
     src: docker-compose.yml
-    dest: '{{ DEPLOYMENT_ROOT }}/docker-compose.yml'
+    dest: '{{ deployment_root }}/docker-compose.yml'
     owner: root
     group: root
     mode: 0644
 
 - name: generate .env
   blockinfile:
-    path: '{{ DEPLOYMENT_ROOT }}/.env'
+    path: '{{ deployment_root }}/.env'
     create: yes
     owner: root
     group: root
     mode: 0644
     block: |
-      DEPLOYMENT_ROOT={{ DEPLOYMENT_ROOT }}
-
-      FINANCE_GO_CRAWLER_IMAGE={{ FINANCE_GO_CRAWLER_IMAGE }}
-      FINANCE_GO_PROCESSOR_IMAGE={{ FINANCE_GO_PROCESSOR_IMAGE }}
-      FINANCE_GO_ANALYZER_IMAGE={{ FINANCE_GO_ANALYZER_IMAGE }}
-      FINANCE_GO_SHIELDER_IMAGE={{ FINANCE_GO_SHIELDER_IMAGE }}
-      FINANCE_GO_PORTER_IMAGE={{ FINANCE_GO_PORTER_IMAGE }}
-      FINANCE_REACT_HUNTER_IMAGE={{ FINANCE_REACT_HUNTER_IMAGE }}
-
-      ENVIRONMENT={{ ENVIRONMENT }}
-      DIRECTORY_BASE={{ DIRECTORY_BASE }}
-      DIRECTORY_LOG={{ DIRECTORY_LOG }}
-      DIRECTORY_DATA={{ DIRECTORY_DATA }}
-      CASSANDRA_HOSTS={{ CASSANDRA_HOSTS }}
-      CASSANDRA_KEYSPACE={{ CASSANDRA_KEYSPACE }}
-      KAFKA_BOOTSTRAP_SERVERS={{ KAFKA_BOOTSTRAP_SERVERS }}
-      CRAWLER_MODE={{ CRAWLER_MODE }}
-
-      TWSE_DATA={{ TWSE_DATA }}
-      TWSE_CRON={{ TWSE_CRON }}
-
-      SHIELDER_HOST={{ SHIELDER_HOST }}
-      SHIELDER_PORT={{ SHIELDER_PORT }}
-      SHIELDER_CORS_METHODS={{ SHIELDER_CORS_METHODS }}
-      SHIELDER_CORS_ORIGINS={{ SHIELDER_CORS_ORIGINS }}
-
-      PORTER_V1_HOST={{ PORTER_V1_HOST }}
-      PORTER_V1_PORT={{ PORTER_V1_PORT }}
-
-      HUNTER_PORT={{ HUNTER_PORT }}
-
-      SHIELDER_PROXY_SCHEME={{ SHIELDER_PROXY_SCHEME }}
-      SHIELDER_PROXY_HOST={{ SHIELDER_PROXY_HOST }}
-      SHIELDER_PROXY_PORT={{ SHIELDER_PROXY_PORT }}
+      ENVIRONMENT_NAME={{ environment_name }}
+      FINANCE_GO_CRAWLER_IMAGE={{ finance_go_crawler_image }}
+      FINANCE_GO_PROCESSOR_IMAGE={{ finance_go_processor_image }}
+      FINANCE_GO_ANALYZER_IMAGE={{ finance_go_analyzer_image }}
+      FINANCE_GO_PORTER_IMAGE={{ finance_go_porter_image }}
+      FINANCE_GO_SHIELDER_IMAGE={{ finance_go_shielder_image }}
+      FINANCE_REACT_HUNTER_IMAGE={{ finance_react_hunter_image }}
+      DIRECTORY_BASE_PREFIX={{ directory_base_prefix }}
+      DIRECTORY_LOG={{ directory_log }}
+      DIRECTORY_DATA={{ directory_data }}
+      CASSANDRA_HOSTS={{ cassandra_hosts }}
+      CASSANDRA_KEYSPACE_PREFIX={{ cassandra_keyspace_prefix }}
+      KAFKA_BOOTSTRAP_SERVERS={{ kafka_bootstrap_servers }}
+      CRAWLER_MODE={{ crawler_mode }}
+      TWSE_DATA={{ twse_data }}
+      TWSE_CRON={{ twse_cron }}
+      PORTER_V1_HOST={{ porter_v1_host }}
+      PORTER_V1_PORT={{ porter_v1_port }}
+      SHIELDER_HOST={{ shielder_host }}
+      SHIELDER_PORT={{ shielder_port }}
+      SHIELDER_CORS_METHODS={{ shielder_cors_methods }}
+      SHIELDER_CORS_ORIGINS={{ shielder_cors_origins }}
+      HUNTER_PORT={{ hunter_port }}
+      SHIELDER_PROXY_SCHEME={{ shielder_proxy_scheme }}
+      SHIELDER_PROXY_HOST={{ shielder_proxy_host }}
+      SHIELDER_PROXY_PORT={{ shielder_proxy_port }}
 
 - name: create finance directories
   file:
@@ -62,17 +54,17 @@
     state: directory
     mode: 0777
   with_items:
-    - '{{ DIRECTORY_BASE }}'
-    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_LOG }}'
-    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_DATA }}'
-    - '{{ DIRECTORY_BASE }}{{ DIRECTORY_DATA }}{{ TWSE_DATA }}'
+    - '{{ directory_base }}'
+    - '{{ directory_base }}{{ directory_log }}'
+    - '{{ directory_base }}{{ directory_data }}'
+    - '{{ directory_base }}{{ directory_data }}{{ twse_data }}'
 
 - name: pull docker images
   command: /usr/local/bin/docker-compose pull
   args:
-    chdir: '{{ DEPLOYMENT_ROOT }}'
+    chdir: '{{ deployment_root }}'
 
 - name: start docker
   command: /usr/local/bin/docker-compose up -d
   args:
-    chdir: '{{ DEPLOYMENT_ROOT }}'
+    chdir: '{{ deployment_root }}'

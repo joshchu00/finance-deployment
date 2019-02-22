@@ -1,0 +1,3 @@
+---
+deployment_root: '{{ deployment_root_prefix }}_{{ environment_name }}'
+directory_base: '{{ directory_base_prefix }}_{{ environment_name }}'

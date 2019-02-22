@@ -1,0 +1,37 @@
+all:
+  children:
+    finance:
+      hosts:
+        finance-1:
+          ansible_host: 127.0.0.1
+          ansible_port: 2222
+          ansible_user: vagrant
+          ansible_ssh_private_key_file: /Users/joshchu/Programs/vagrant/test/.vagrant/machines/default/virtualbox/private_key
+      vars:
+        environment_name: dev
+        deployment_root_prefix: /root/finance
+        finance_go_crawler_image: joshchu00/finance-go-crawler:latest
+        finance_go_processor_image: joshchu00/finance-go-processor:latest
+        finance_go_analyzer_image: joshchu00/finance-go-analyzer:latest
+        finance_go_porter_image: joshchu00/finance-go-porter:latest
+        finance_go_shielder_image: joshchu00/finance-go-shielder:latest
+        finance_react_hunter_image: joshchu00/finance-react-hunter:latest
+        directory_base_prefix: /var/lib/finance
+        directory_log: /log
+        directory_data: /data
+        cassandra_hosts: 127.0.0.1:9042
+        cassandra_keyspace_prefix: finance
+        kafka_bootstrap_servers: 127.0.0.1:9092
+        crawler_mode: daemon
+        twse_data: /twse
+        twse_cron: '0 5 7-12 * * *'
+        porter_v1_host: 127.0.0.1
+        porter_v1_port: 1011
+        shielder_host: 127.0.0.1
+        shielder_port: 8080
+        shielder_cors_methods: 'GET'
+        shielder_cors_origins: 'http://127.0.0.1'
+        hunter_port: 80
+        shielder_proxy_scheme: http
+        shielder_proxy_host: 127.0.0.1
+        shielder_proxy_port: 8080
