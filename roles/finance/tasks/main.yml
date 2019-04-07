@@ -25,6 +25,8 @@
       FINANCE_GO_CRAWLER_IMAGE={{ finance_go_crawler_image }}
       FINANCE_GO_PROCESSOR_IMAGE={{ finance_go_processor_image }}
       FINANCE_GO_ANALYZER_IMAGE={{ finance_go_analyzer_image }}
+      FINANCE_GO_CHOOSER_IMAGE={{ finance_go_chooser_image }}
+      FINANCE_GO_NOTIFIER_IMAGE={{ finance_go_notifier_image }}
       FINANCE_GO_PORTER_IMAGE={{ finance_go_porter_image }}
       FINANCE_GO_SHIELDER_IMAGE={{ finance_go_shielder_image }}
       FINANCE_REACT_HUNTER_IMAGE={{ finance_react_hunter_image }}

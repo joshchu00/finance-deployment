@@ -13,6 +13,8 @@ all:
         finance_go_crawler_image: joshchu00/finance-go-crawler:latest
         finance_go_processor_image: joshchu00/finance-go-processor:latest
         finance_go_analyzer_image: joshchu00/finance-go-analyzer:latest
+        finance_go_chooser_image: joshchu00/finance-go-chooser:latest
+        finance_go_notifier_image: joshchu00/finance-go-notifier:latest
         finance_go_porter_image: joshchu00/finance-go-porter:latest
         finance_go_shielder_image: joshchu00/finance-go-shielder:latest
         finance_react_hunter_image: joshchu00/finance-react-hunter:latest
