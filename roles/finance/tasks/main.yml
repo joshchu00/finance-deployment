@@ -39,6 +39,8 @@
       CRAWLER_MODE={{ crawler_mode }}
       TWSE_DATA={{ twse_data }}
       TWSE_CRON={{ twse_cron }}
+      TELEGRAM_TOKEN={{ telegram_token }}
+      TELEGRAM_CHATID={{ telegram_chatid }}
       PORTER_V1_HOST={{ porter_v1_host }}
       PORTER_V1_PORT={{ porter_v1_port }}
       SHIELDER_HOST={{ shielder_host }}

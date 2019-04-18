@@ -27,6 +27,8 @@ all:
         crawler_mode: daemon
         twse_data: /twse
         twse_cron: '0 5 7-12 * * *'
+        telegram_token: token
+        telegram_chatid: 0
         porter_v1_host: 127.0.0.1
         porter_v1_port: 1011
         shielder_host: 127.0.0.1
