@@ -26,7 +26,7 @@ all:
         kafka_bootstrap_servers: 127.0.0.1:9092
         crawler_mode: daemon
         twse_data: /twse
-        twse_cron: '0 5 7-12 * * *'
+        twse_cron: '0 5 7,9,12 * * *'
         telegram_token: token
         telegram_chatid: 0
         porter_v1_host: 127.0.0.1
